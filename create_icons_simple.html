@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создание иконок</title>
+</head>
+<body>
+    <h1>Создание иконок для MacThree</h1>
+    <p>Нажмите кнопку ниже, чтобы создать иконки. Они автоматически загрузятся.</p>
+    <button onclick="createIcons()">Создать иконки</button>
+    <div id="result"></div>
+
+    <script>
+        function createIcons() {
+            const sizes = [192, 512];
+            sizes.forEach(size => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                
+                // Черный фон
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(0, 0, size, size);
+                
+                // Белая рамка
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = size / 10;
+                const border = size / 10;
+                ctx.strokeRect(border, border, size - border * 2, size - border * 2);
+                
+                // Текст "M3"
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `bold ${size / 4}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('M3', size / 2, size / 2);
+                
+                // Скачиваем
+                canvas.toBlob(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `icon-${size}.png`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                }, 'image/png');
+            });
+            
+            document.getElementById('result').innerHTML = '<p style="color: green;">✓ Иконки созданы и загружены! Переместите их в папку MacThree-Web.</p>';
+        }
+    </script>
+</body>
+</html>
+

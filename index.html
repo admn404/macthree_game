@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MacThree">
+    <title>MacThree</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png" onerror="this.style.display='none'">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Главное меню -->
+    <div id="menu-screen" class="screen active">
+        <div class="menu-container">
+            <h1 class="game-title">MacThree</h1>
+            
+            <div class="login-section">
+                <label for="login-input">Логин:</label>
+                <input type="text" id="login-input" placeholder="Player" maxlength="20">
+            </div>
+            
+            <button id="start-btn" class="menu-btn btn-start">Новая игра</button>
+            <button id="scores-btn" class="menu-btn btn-scores">Таблица рекордов</button>
+            <button id="exit-btn" class="menu-btn btn-exit">Выход</button>
+        </div>
+    </div>
+
+    <!-- Игровой экран -->
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <button id="back-btn" class="back-btn">← В главное меню</button>
+            <div class="score-display">Счёт: <span id="score-value">0</span></div>
+        </div>
+        <canvas id="game-canvas"></canvas>
+        <div id="achievement-overlay" class="achievement-overlay hidden">
+            <div class="achievement-content">
+                <div class="achievement-icon">⭐</div>
+                <div class="achievement-text">Очков: <span id="achievement-points">0</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Экран рекордов -->
+    <div id="scores-screen" class="screen">
+        <div class="scores-header">
+            <button id="scores-back-btn" class="back-btn">← В главное меню</button>
+            <h2>Таблица рекордов</h2>
+        </div>
+        <div id="scores-list" class="scores-list"></div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
+
